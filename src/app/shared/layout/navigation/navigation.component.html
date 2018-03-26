@@ -1,0 +1,60 @@
+<aside id="left-panel">
+
+  <nav>
+    <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+    Please note that these links work a bit different than
+    traditional href="" links. See documentation for details.
+    -->
+
+    <ul saSmartMenu>
+
+      <li routerLinkActive="active">
+        <a routerLink="/home" title="Home">
+          <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Home' | i18n}}</span></a>
+      </li>
+      <li >
+        <a title="BOT General">
+          <i class="fa fa-lg fa-fw fa-book"></i><span class="menu-item-parent">{{'General' | i18n}}</span>
+        </a>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/stopwords">{{'Stop Words' | i18n}}</a>
+          </li>
+        </ul>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/synoms">{{'Sinónimos' | i18n}}</a>
+          </li>
+        </ul>
+      </li>
+      <li >
+        <a title="Administración BOT">
+          <i class="fa fa-lg fa-fw fa-book"></i><span class="menu-item-parent">{{'Administración' | i18n}}</span>
+        </a>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/company">{{'Empresa' | i18n}}</a>
+          </li>
+        </ul>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/users">{{'Usuarios' | i18n}}</a>
+          </li>
+        </ul>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/rules">{{'Reglas' | i18n}}</a>
+          </li>
+        </ul>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/admin/datasets">{{'Entrenamiento' | i18n}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <sa-minify-menu></sa-minify-menu>
+
+</aside>

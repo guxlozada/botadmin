@@ -1,0 +1,62 @@
+<header id="header" class="animated fadeInDown">
+
+  <div id="logo-group">
+    <span id="logo"> <img src="assets/img/logo.png" alt="SmartAdmin"> </span>
+  </div>
+</header>
+<div id="main" role="main" class="animated fadeInDown">
+
+  <div id="content" class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-4 hidden-xs hidden-sm">
+        <h1 class="txt-color-red login-header-big">Bot Admin Console</h1>
+
+        <div class="hero">
+          <div class="pull-left login-desc-box-l">
+            <h4 class="paragraph-header">Esta aplicación le permite administrar el Bot</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+        <div class="well no-padding">
+          <form class="smart-form client-form">
+            <header>
+              Inicio de Sesión
+            </header>
+            <fieldset>
+              <section>
+                <label class="label">E-mail/Usuario</label>
+                <label class="input"> <i class="icon-append fa fa-user"></i>
+                  <input type="email" [(ngModel)]="username" name="email" data-smart-validate-input="" data-required="" data-email="" data-message-required="Ingrese un correo electrónico válido" data-message-email="Ingrese un correo electrónico válido">
+                  <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>
+                    Dirección de Correo Electrónico o Usuario</b></label>
+              </section>
+              <section>
+                <label class="label">Clave</label>
+                <label class="input"> <i class="icon-append fa fa-lock"></i>
+                  <input type="password" [(ngModel)]="password" name="password" data-smart-validate-input="" data-required="" data-minlength="3" data-maxnlength="20" data-message="Debe ingresar su clave">
+                  <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Ingrese su Clave</b> </label>
+
+                <div class="note">
+                  <a routerLink="/auth/forgot-password">Olvido su Clave?</a>
+                </div>
+              </section>
+              <section>
+                <label class="checkbox">
+                  <input type="checkbox" name="remember" checked>
+                  <i></i>Mantener sesión iniciada</label>
+              </section>
+            </fieldset>
+            <footer>
+              <button (click)="login($event)" class="btn btn-primary">
+                Ingresar
+              </button>
+            </footer>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,104 @@
+<sa-widget color="blueDark">
+  <header>
+    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+    <h2>Reglas Configuradas</h2>
+  </header>
+  <div>
+    <div class="widget-body no-padding">
+      <p-dataTable [value]="rules" selectionMode="single" [(selection)]="selectedRule" [paginator]="true" [rows]="15" [responsive]="true"
+        [alwaysShowPaginator]="false" [style]="{'width':'90%'}">
+        <p-column field="codRule" header="Codigo" [sortable]="true"></p-column>
+        <p-column field="category" header="Categoria" [sortable]="true"></p-column>
+        <p-column field="name" header="Nombre" [sortable]="true"></p-column>
+        <p-column field="status" header="Estado" [sortable]="true"></p-column>
+        <p-footer>
+          <button pButton type="button" label="Agregar" icon="fa-plus" (click)="add()"></button>
+          <button pButton type="button" label="Editar" icon="fa-pencil" (click)="edit()" [disabled]="!selectedRule"></button>
+          <button pButton type="button" label="Eliminar" icon="fa-trash-o" (click)="remove()" [disabled]="!selectedRule"></button>
+          <button pButton type="button" label="Detalles" icon="fa-pencil" (click)="details()" [disabled]="!selectedRule"></button>
+        </p-footer>
+      </p-dataTable>
+      <p-messages [value]="msgs"></p-messages>
+      <p>&nbsp;</p>
+      <div *ngIf="ruleForDetails" class="detailsPanel">
+        <p-panel id="detailsPanel" header="Detalles de Regla">
+          
+            <div class="ui-grid ui-grid-responsive ui-fluid">
+              <div class="ui-g ui-g-12 ui-g-nopad">
+                <div class="ui-g-12 ui-md-3 ui-label">
+                  <label>Código1</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                  <label>{{ruleForDetails.codRule}}</label>
+                </div>
+              </div>
+              <div class="ui-g ui-g-12 ui-g-nopad">
+                <div class="ui-g-12 ui-md-3 ui-label">
+                  <label>Categoría</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                  <label>{{ruleForDetails.category}}</label>
+                </div>
+              </div>
+              <div class="ui-g ui-g-12 ui-g-nopad">
+                <div class="ui-g-12 ui-md-3 ui-label">
+                  <label>Nombre</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                  <label>{{ruleForDetails.name}}</label>
+                </div>
+              </div>
+              <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="ruleForDetails.stats">
+                <p>Información Entrenamiento</p>
+
+                <p-dataTable [value]="ruleForDetails.stats.words" [responsive]="true" [alwaysShowPaginator]="false" [style]="{'width':'50%'}">
+                  <p-header>Líneas de Entrenamiento: {{ruleForDetails.stats.totalTrainLines}}</p-header>
+                  <p-column field="word" header="Palabra" [sortable]="true"></p-column>
+                  <p-column field="value" header="Conteo" [sortable]="true"></p-column>
+                  <p-column field="weigth" header="Peso" [sortable]="true"></p-column>
+                </p-dataTable>
+              </div>
+            </div>
+       
+          <p-footer>
+            <button pButton type="button" icon="fa-close" label="Cerrar" (click)="closePanel()"></button>
+          </p-footer>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</sa-widget>
+<p-dialog header="Regla" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <form #ruleForm="ngForm" novalidate>
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="ruleForDialog">
+      <div class="ui-g ui-g-12 ui-g-nopad">
+        <div class="ui-g-12 ui-md-3 ui-label">
+          <label for="codigo">Código</label>
+        </div>
+        <div class="ui-g-12 ui-md-9">
+          <input pInputText id="codigo" name="codigo" required [(ngModel)]="ruleForDialog.codRule" />
+        </div>
+      </div>
+      <div class="ui-g ui-g-12 ui-g-nopad">
+        <div class="ui-g-12 ui-md-3 ui-label">
+          <label for="lname">Nombre</label>
+        </div>
+        <div class="ui-g-12 ui-md-9">
+          <input pInputText id="lname" name="lname" required [(ngModel)]="ruleForDialog.name" />
+        </div>
+      </div>
+      <div class="ui-g ui-g-12 ui-g-nopad">
+        <div class="ui-g-12 ui-md-3 ui-label">
+          <label for="category">Categoría</label>
+        </div>
+        <div class="ui-g-12 ui-md-9">
+          <input pInputText id="category" name="category" required [(ngModel)]="ruleForDialog.category" />
+        </div>
+      </div>
+    </div>
+  </form>
+  <p-footer>
+    <button type="submit" pButton icon="fa-check" (click)="save()" label="Save" [disabled]="!ruleForm.form.valid"></button>
+    <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancelar"></button>
+  </p-footer>
+</p-dialog>

@@ -1,0 +1,77 @@
+<header id="header" class="animated fadeInDown">
+  
+    <div id="logo-group">
+      <span id="logo"> <img src="assets/img/logo.png" alt="SmartAdmin"> </span>
+    </div>
+  
+
+  </header>
+  <div id="main" role="main" class="animated fadeInDown">
+  
+    <!-- MAIN CONTENT -->
+    <div id="content" class="container">
+  
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 hidden-xs hidden-sm">
+          <h1 class="txt-color-red login-header-big">BotAdmin Console</h1>
+          <div class="hero">
+  
+            <div class="pull-left login-desc-box-l">
+              <h4 class="paragraph-header">Primero es necesario crear el usuario Administrador del sistema.
+                <br/>Al crear el usuario recibirá un correo electrónico con la clave de acceso.</h4>
+            </div>
+            <img src="assets/img/demo/iphoneview.png" alt="" class="pull-right display-image" style="width:210px">
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+          <div class="well no-padding">
+            <form id="smart-form-register" class="smart-form client-form" (ngSubmit)="onSubmit()">
+              <header>
+                Creación del Usuario Administrador
+              </header>
+              <fieldset>
+                <section>
+                  <label class="input"> <i class="icon-append fa fa-user"></i>
+                    <input type="text" [(ngModel)]="registerData.code" name="code" placeholder="Usuario"
+                        data-smart-validate-input="" data-required="" data-message-required="Ingrese un nombre de usuario válido" >
+                    <b class="tooltip tooltip-bottom-right">Nombre de usuario</b> </label>
+                </section>
+  
+                <section>
+                  <label class="input"> <i class="icon-append fa fa-envelope"></i>
+                    <input type="mail" [(ngModel)]="registerData.mail" name="mail" placeholder="Correo Electrónico" required
+                        data-smart-validate-input="true" data-required="true" data-email="" data-message-required="Ingrese un correo electrónico válido" data-message-email="Ingrese un correo electrónico válido">
+                    <b class="tooltip tooltip-bottom-right">Correo Electrónico del Administrador</b> </label>
+                </section>
+                <section >
+                  <label class="input">
+                    <input type="text" [(ngModel)]="registerData.name" name="name" placeholder="Nombre completo del Administrador" required
+                        data-required="" data-minlength="3" data-maxnlength="20" data-message="Debe ingresar el nombre del Administrador">
+                    <b class="tooltip tooltip-bottom-right">Nombre Completo del Administrador</b>
+                  </label>
+                </section>
+               
+              </fieldset>
+  
+              <footer>
+                <button (click)="registerAdmin($event)" class="btn btn-primary">
+                  Crear
+                </button>
+              </footer>
+  
+              <div class="message">
+                <i class="fa fa-check"></i>
+                <p>
+                  Thank you for your registration!
+                </p>
+              </div>
+            </form>
+  
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  

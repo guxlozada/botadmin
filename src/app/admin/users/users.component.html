@@ -1,0 +1,55 @@
+<div class="usersTable">
+  <p-dataTable [value]="users" selectionMode="single" [(selection)]="selectedUser" [paginator]="true" [rows]="10" [responsive]="true"
+    [alwaysShowPaginator]="false">
+    <p-column field="idUser" header="Código" [sortable]="true"></p-column>
+    <p-column field="name" header="Nombre" [sortable]="true"></p-column>
+    <p-column field="mail" header="Correo Electrónico" [sortable]="true"></p-column>
+    <p-footer>
+      <button pButton type="button" label="Agregar" icon="fa-plus" (click)="add()"></button>
+      <button pButton type="button" label="Editar" icon="fa-pencil" (click)="edit()" [disabled]="!selectedUser"></button>
+      <button pButton type="button" label="Generar Clave" icon="fa-pencil" (click)="generateClave()" [disabled]="!selectedUser"></button>
+      <button pButton type="button" label="Eliminar" icon="fa-trash-o" (click)="remove()" [disabled]="!selectedUser"></button>
+    </p-footer>
+  </p-dataTable>
+</div>
+<p-messages [value]="msgs"></p-messages>
+<p-confirmDialog header="Confirmación" icon="fa fa-trash" #cd>
+  <p-footer>
+    <button type="button" pButton icon="fa-check" label="Si" (click)="cd.accept()"></button>
+    <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+  </p-footer>
+</p-confirmDialog>
+<p-dialog header="Usuario" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <form #userForm="ngForm" novalidate>
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+      <div class="ui-g ui-g-12 ui-g-nopad">
+        <div class="ui-g-12 ui-md-3 ui-label">
+          <label>Código</label>
+        </div>
+        <div class="ui-g-12 ui-md-9">
+            <input pInputText id="code" name="code" required [(ngModel)]="userForDialog.idUser" />
+        </div>
+      </div>
+      <div class="ui-g ui-g-12 ui-g-nopad">
+        <div class="ui-g-12 ui-md-3 ui-label">
+          <label for="name">Nombre</label>
+        </div>
+        <div class="ui-g-12 ui-md-9">
+          <input pInputText id="name" name="name" required [(ngModel)]="userForDialog.name" />
+        </div>
+      </div>
+      <div class="ui-g ui-g-12 ui-g-nopad">
+        <div class="ui-g-12 ui-md-3 ui-label">
+          <label for="mail">Correo Electrónico</label>
+        </div>
+        <div class="ui-g-12 ui-md-9">
+          <input pInputText id="mail" name="mail" required [(ngModel)]="userForDialog.mail" />
+        </div>
+      </div>
+    </div>
+  </form>
+  <p-footer>
+    <button type="submit" pButton icon="fa-check" (click)="save()" label="Guardar" [disabled]="!userForm.form.valid"></button>
+    <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancelar"></button>
+  </p-footer>
+</p-dialog>

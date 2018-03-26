@@ -1,0 +1,36 @@
+<div class="datasetsTable">
+  <label for="singleselect">Regla:</label>
+  <p-dropdown name="singleselect" [options]="rulesSI" [(ngModel)]="selectedRuleSI" placeholder="Seleccione la Regla" [style]="{'width':'250px'}"></p-dropdown>
+  <button pButton type="button" label="Aceptar" (click)="loadData()" [disabled]="!selectedRuleSI"></button>
+</div>
+<div *ngIf="datasets" class="datasetsTable">
+  <p-dataTable [value]="datasets" selectionMode="single" [(selection)]="selectedDataset" [paginator]="true" [rows]="10" [responsive]="true"
+    [alwaysShowPaginator]="false">
+    <p-column field="text" header="Textos" [sortable]="true"></p-column>
+    <p-footer>
+      <button pButton type="button" label="Agregar" icon="fa-plus" (click)="add()"></button>
+      <button pButton type="button" label="Editar" icon="fa-pencil" (click)="edit()" [disabled]="!selectedDataset"></button>
+      <button pButton type="button" label="Eliminar" icon="fa-trash-o" (click)="remove()" [disabled]="!selectedDataset"></button>
+    </p-footer>
+  </p-dataTable>
+</div>
+<p-messages [value]="msgs"></p-messages>
+<p-confirmDialog header="Confirmación" icon="fa fa-trash" #cd>
+  <p-footer>
+    <button type="button" pButton icon="fa-check" label="Si" (click)="cd.accept()"></button>
+    <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+  </p-footer>
+</p-confirmDialog>
+<p-dialog header="Texto Entrenamiento" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <form #datasetForm="ngForm" novalidate>
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+      <div class="ui-g ui-g-12 ui-g-nopad">
+          <textarea id="terms" name="terms" placeholder="Texto de Entrenamiento" [rows]="4" [cols]="30" pInputTextarea autoResize="autoResize" [(ngModel)]="datasetForDialog.text" required></textarea>
+      </div>
+    </div>
+  </form>
+  <p-footer>
+    <button type="submit" pButton icon="fa-check" (click)="save()" label="Guardar" [disabled]="!datasetForm.form.valid"></button>
+    <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancelar"></button>
+  </p-footer>
+</p-dialog>

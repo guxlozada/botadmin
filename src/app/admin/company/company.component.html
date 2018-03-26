@@ -1,0 +1,129 @@
+<div id="companyDetails">
+  <p-fieldset legend="Datos Generales" [toggleable]="true" [style]="{'width': '50%'}">
+    <form #companyForm="ngForm" novalidate>
+
+      <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="company">
+
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label for="company">Empresa</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <input pInputText id="company" name="company" required [(ngModel)]="company.company" [disabled]="!editMode" />
+          </div>
+        </div>
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label for="name">Nombre Bot</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <input pInputText id="name" name="name" required [(ngModel)]="company.name" [disabled]="!editMode" />
+          </div>
+        </div>
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label for="url">URL</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <input pInputText id="url" name="url" required [(ngModel)]="company.url" [disabled]="!editMode" />
+          </div>
+        </div>
+
+      </div>
+
+      <div *ngIf="!editMode">
+        <button type="submit" pButton icon="fa-check" (click)="update()" label="Modificar"></button>
+      </div>
+      <div *ngIf="editMode">
+        <button type="submit" pButton icon="fa-check" (click)="save()" label="Guardar" [disabled]="!companyForm.form.valid"></button>
+        <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancelar"></button>
+      </div>
+    </form>
+  </p-fieldset>
+  <p-fieldset legend="Datos Contacto" [toggleable]="true" [collapsed]="true" [style]="{'width': '50%'}">
+    <form #contactForm="ngForm" novalidate>
+      <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="company">
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label for="mailC">Mail</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <input pInputText id="mailC" name="mailC" required [(ngModel)]="company.contact.mail" [disabled]="!editModeC" />
+          </div>
+        </div>
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label for="nameC">Nombre</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <input pInputText id="nameC" name="nameC" required [(ngModel)]="company.contact.name" [disabled]="!editModeC" />
+          </div>
+        </div>
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label for="phoneC">Teléfono</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <input pInputText id="phoneC" name="phoneC" [(ngModel)]="company.contact.phone" [disabled]="!editModeC" />
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!editModeC">
+        <button type="submit" pButton icon="fa-check" (click)="updateC()" label="Modificar"></button>
+      </div>
+      <div *ngIf="editModeC">
+        <button type="submit" pButton icon="fa-check" (click)="saveC()" label="Guardar" [disabled]="!contactForm.form.valid"></button>
+        <button type="button" pButton icon="fa-close" (click)="cancelC()" label="Cancelar"></button>
+      </div>
+    </form>
+  </p-fieldset>
+  <p-fieldset legend="Valores Motor NLP" [toggleable]="true" [collapsed]="true" [style]="{'width': '50%'}">
+    <form #nlpForm="ngForm" novalidate>
+      <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="company">
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label for="totalRules">Total Reglas</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <input pInputText id="totalRules" name="totalRules" required [(ngModel)]="company.nlpValues.totalRules" [disabled]="true"
+            />
+          </div>
+        </div>
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label for="activeRules"> Reglas Activas</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <input pInputText id="activeRules" name="activeRules" required [(ngModel)]="company.nlpValues.activeRules" [disabled]="true"
+            />
+          </div>
+        </div>
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label for="accuracyLimit">Accuracy Limit</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <input pInputText id="accuracyLimit" name="accuracyLimit" required [(ngModel)]="company.nlpValues.accuracyLimit" [disabled]="!editModeN"
+            />
+          </div>
+        </div>
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label for="confidenceLimit">Confidence Limit</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <input pInputText id="confidenceLimit" name="confidenceLimit" [(ngModel)]="company.nlpValues.confidenceLimit" [disabled]="!editModeN"
+            />
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!editModeN">
+        <button type="submit" pButton icon="fa-check" (click)="updateN()" label="Modificar"></button>
+      </div>
+      <div *ngIf="editModeN">
+        <button type="submit" pButton icon="fa-check" (click)="saveN()" label="Guardar" [disabled]="!nlpForm.form.valid"></button>
+        <button type="button" pButton icon="fa-close" (click)="cancelN()" label="Cancelar"></button>
+      </div>
+    </form>
+  </p-fieldset>
+</div>

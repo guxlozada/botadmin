@@ -1,0 +1,54 @@
+<p-dataTable [value]="rules" selectionMode="single" [(selection)]="selectedRule" [paginator]="true" [rows]="15" [responsive]="true"
+    [alwaysShowPaginator]="false">
+    <p-column field="codRule" header="Codigo" [sortable]="true"></p-column>
+    <p-column field="category" header="Categoria" [sortable]="true"></p-column>
+    <p-column field="name" header="Nombre" [sortable]="true"></p-column>
+    <p-column field="status" header="Estado" [sortable]="true"></p-column>
+    <p-footer>
+        <button pButton type="button" label="Agregar" icon="fa-plus" (click)="add()"></button>
+        <button pButton type="button" label="Editar" icon="fa-pencil" (click)="edit()" [disabled]="!selectedRule"></button>
+        <button pButton type="button" label="Eliminar" icon="fa-trash-o" (click)="remove()" [disabled]="!selectedRule"></button>
+        <button pButton type="button" label="Detalles" icon="fa-pencil" (click)="details()" [disabled]="!selectedRule"></button>
+    </p-footer>
+</p-dataTable>
+<p-messages [value]="msgs"></p-messages>
+<div *ngIf="ruleForDetails" class="detailsPanel">
+    <p-panel id="detailsPanel" header="Detalles de Regla En misma pagina">
+    </p-panel>
+</div>
+<app-detail-rule [ruleDetails]="ruleForDetails"></app-detail-rule>
+<p-dialog header="Regla" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <form #ruleForm="ngForm" novalidate>
+        <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="ruleForDialog">
+            <div class="ui-g ui-g-12 ui-g-nopad">
+                <div class="ui-g-12 ui-md-3 ui-label">
+                    <label for="fname">Código</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <input pInputText id="fname" name="fname" required [(ngModel)]="ruleForDialog.codRule" />
+                </div>
+            </div>
+            <div class="ui-g ui-g-12 ui-g-nopad">
+                <div class="ui-g-12 ui-md-3 ui-label">
+                    <label for="lname">Nombre</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <input pInputText id="lname" name="lname" required [(ngModel)]="ruleForDialog.name" />
+                </div>
+            </div>
+            <div class="ui-g ui-g-12 ui-g-nopad">
+                <div class="ui-g-12 ui-md-3 ui-label">
+                    <label for="prof">Categoría</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <input pInputText id="prof" name="prof" required [(ngModel)]="ruleForDialog.category" />
+                </div>
+            </div>
+            
+        </div>
+    </form>
+    <p-footer>
+        <button type="submit" pButton icon="fa-check" (click)="save()" label="Save" [disabled]="!ruleForm.form.valid"></button>
+        <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancelar"></button>
+    </p-footer>
+</p-dialog>

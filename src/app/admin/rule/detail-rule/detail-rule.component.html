@@ -1,0 +1,45 @@
+<div *ngIf="ruleDetails" class="detailsPanel">
+  <p-panel id="detailsPanel" header="Detalles de Regla">
+    <form #ruleForm="ngForm" novalidate>
+      <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label>Código</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <label>{{ruleDetails.codRule}}</label>
+          </div>
+        </div>
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label>Categoría</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <label>{{ruleDetails.category}}</label>
+          </div>
+        </div>
+        <div class="ui-g ui-g-12 ui-g-nopad">
+          <div class="ui-g-12 ui-md-3 ui-label">
+            <label>Nombre</label>
+          </div>
+          <div class="ui-g-12 ui-md-9">
+            <label>{{ruleDetails.name}}</label>
+          </div>
+        </div>
+        <div class="ui-grid ui-grid-responsive ui-fluid">
+          <p>Información Entrenamiento</p>
+          
+          <p-dataTable [value]="ruleDetails.stats.words" [responsive]="true" [alwaysShowPaginator]="false" [style]="{'width':'50%';'margin':'auto'}">
+            <p-header>Líneas de Entrenamiento: {{ruleDetails.stats.totalTrainLines}}</p-header>
+            <p-column field="word" header="Palabra" [sortable]="true"></p-column>
+            <p-column field="value" header="Conteo" [sortable]="true"></p-column>
+            <p-column field="weigth" header="Peso" [sortable]="true"></p-column>
+          </p-dataTable>
+        </div>
+      </div>
+    </form>
+    <p-footer>
+      <button pButton type="button" icon="fa-close" label="Cerrar" (click)="closePanel()"></button>
+    </p-footer>
+  </p-panel>
+</div>

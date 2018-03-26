@@ -1,0 +1,16 @@
+.datasetsTable {
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 100px;
+    margin: 0 auto;
+};
+.datasetsMain {
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: 0 auto;
+};
